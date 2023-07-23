@@ -1,0 +1,34 @@
+name: Main CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Main CI
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+        bundler-cache: true
+    - name: Set up NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '19'
+        cache: 'yarn'
+    - name: Install dependencies and compile assets
+      run: bundle exec rake assets:precompile
+    - name: Run lint
+      run: make lint
+    - name: Run test
+      run: make test
