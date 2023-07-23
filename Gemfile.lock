@@ -165,6 +165,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    pg (1.5.3)
     power_assert (2.0.3)
     public_suffix (5.0.3)
     puma (5.6.6)
@@ -308,6 +309,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   minitest-power_assert
+  pg
   puma (~> 5.0)
   rails (~> 7.0.6)
   rubocop
