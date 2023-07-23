@@ -23,4 +23,7 @@ test:
 production:
   <<: *default
   adapter: postgress
-  database: github_quality
+  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['DATABASE_'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
