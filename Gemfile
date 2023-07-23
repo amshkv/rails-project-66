@@ -71,6 +71,7 @@ group :development do
   # gem "spring"
 
   gem 'annotate'
+  gem 'i18n-debug'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
