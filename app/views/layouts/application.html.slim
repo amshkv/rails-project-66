@@ -9,5 +9,26 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
 
-  body
-    = yield
+  body.min-vh-100.d-flex.flex-column
+    header.flex-shrink-0
+      nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+        .container-fluid
+          = link_to root_path, class: 'navbar-brand d-flex align-items-center' do
+            = t('application_name')
+
+          button.navbar-toggler[type='button' data-bs-toggle='collapse' data-bs-target='#navbarScroll'
+            aria-controls='navbarScroll' aria-expanded='false' aria-label=t('.toggle_navigation')]
+            span.navbar-toggler-icon
+
+          .collapse.navbar-collapse#navbarScroll
+
+    main.flex-grow-1.flex-shrink-0
+      .container.my-5
+        - if content_for?(:title)
+          h1.mb-4 = yield(:title)
+
+        = yield
+
+    footer.footer.py-3.flex-shrink-0.bg-dark.bg-opacity-75.text-white
+      .container-fluid
+        = t('.copyright', year: Time.current.year)

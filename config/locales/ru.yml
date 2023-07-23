@@ -1,3 +1,7 @@
 ---
 ru:
   application_name: GitHub Quality
+  layouts:
+    application:
+      copyright: "© %{year}"
+      toggle_navigation: Переключить меню
