@@ -23,4 +23,4 @@ test:
 production:
   <<: *default
   adapter: postgress
-  database: github-quality
+  database: github_quality
