@@ -21,6 +21,18 @@ html
             span.navbar-toggler-icon
 
           .collapse.navbar-collapse#navbarScroll
+            ul.navbar-nav.ms-auto.mb-2.mb-md-0
+              - if signed_in?
+                li.nav-item
+                  a.nav-link.disabled.text-white-50 = current_user.email
+                li.nav-item
+                  = button_to t('.sign_out'), auth_logout_path, method: :delete, data: { turbo: false }, class: 'nav-link'
+
+              - else
+                li.nav-item
+                  = button_to auth_request_path(:github), method: :post, data: { turbo: false }, class: 'nav-link' do
+                    span.bi.bi-github.me-2
+                    = t('.sign_in')
 
     main.flex-grow-1.flex-shrink-0
       .container.my-5

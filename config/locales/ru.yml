@@ -4,6 +4,8 @@ ru:
   layouts:
     application:
       copyright: "© %{year}"
+      sign_in: Войти
+      sign_out: Выйти
       toggle_navigation: Переключить меню
   web:
     welcome:
