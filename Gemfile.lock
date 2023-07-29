@@ -114,6 +114,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    flash_rails_messages (2.3.0)
+      rails (>= 5.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -347,6 +349,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   faker
+  flash_rails_messages
   i18n-debug
   i18n-tasks
   jbuilder

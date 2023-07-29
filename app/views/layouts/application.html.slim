@@ -35,6 +35,9 @@ html
                     = t('.sign_in')
 
     main.flex-grow-1.flex-shrink-0
+      .container-fluid
+        = render_flash_messages dismissible: true
+
       .container.my-5
         - if content_for?(:title)
           h1.mb-4 = yield(:title)

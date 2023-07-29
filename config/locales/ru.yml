@@ -1,6 +1,7 @@
 ---
 ru:
   application_name: GitHub Quality
+  close: Закрыть
   layouts:
     application:
       copyright: "© %{year}"
