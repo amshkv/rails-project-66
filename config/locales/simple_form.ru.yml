@@ -5,6 +5,6 @@ ru:
       default_message: 'Пожалуйста, исправьте эти ошибки:'
     'no': Нет
     required:
-      html: <abbr title="обязательно">*</abbr>
+      html: <span title="обязательно">*</span>
       text: обязательно
     'yes': Да
