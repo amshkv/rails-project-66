@@ -22,7 +22,11 @@
 #  user_id  (user_id => users.id)
 #
 class Repository < ApplicationRecord
+  extend Enumerize
+
   belongs_to :user
+
+  enumerize :language, in: %i[javascript], predicates: true
 
   validates :github_id, presence: true, uniqueness: true
 end

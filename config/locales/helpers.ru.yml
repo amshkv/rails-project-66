@@ -1,0 +1,6 @@
+---
+ru:
+  helpers:
+    submit:
+      repository:
+        create: Добавить репозиторий

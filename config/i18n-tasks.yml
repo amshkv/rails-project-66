@@ -118,6 +118,8 @@ search:
 
 ## Consider these keys used:
 ignore_unused:
+  - 'enumerize.*'
+  - 'helpers.*'
   - 'close'
   - 'activerecord.attributes.*'
   # - '{devise,kaminari,will_paginate}.*'

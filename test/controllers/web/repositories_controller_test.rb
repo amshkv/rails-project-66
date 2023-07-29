@@ -25,6 +25,14 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'signed user can get new' do
     sign_in(@user)
+
+    stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
+      .to_return(
+        status: 200,
+        body: load_fixture('files/repository_response.json'),
+        headers: { 'Content-Type' => 'application/json' }
+      )
+
     get new_repository_url
     assert_response :success
   end

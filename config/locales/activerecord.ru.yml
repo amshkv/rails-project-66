@@ -3,5 +3,6 @@ ru:
   activerecord:
     attributes:
       repository:
+        github_id: GitHub
         language: Язык
         name: Название
