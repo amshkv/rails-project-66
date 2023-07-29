@@ -16,6 +16,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def load_fixture(filename)
+    File.read(File.dirname(__FILE__) + "/fixtures/#{filename}")
+  end
 end
 
 class ActionDispatch::IntegrationTest
