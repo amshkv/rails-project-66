@@ -6,3 +6,6 @@ ru:
         github_id: GitHub
         language: Язык
         name: Название
+    errors:
+      messages:
+        blank: не может быть пустым

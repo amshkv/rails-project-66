@@ -10,13 +10,40 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def new
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    repos = client.repos
-    filtered_repos = repos.filter { |repo| Repository.language.value? repo.language&.downcase }
+    filtered_repos = user_repositories.filter { |repo| Repository.language.value? repo.language&.downcase }
     @repositories = filtered_repos.map { |repo| [repo.full_name, repo.id] }
 
     @repository = current_user.repositories.new
   end
 
-  def create; end
+  def create
+    @repository = current_user.repositories.find_or_initialize_by(permitted_params)
+    repo = user_repositories.find { |r| r.id == @repository.github_id.to_i }
+
+    if repo
+      @repository.name = repo.name
+      @repository.language = repo.language.downcase
+    end
+
+    if @repository.save
+      redirect_to repositories_path, notice: I18n.t('repository.create.success')
+    else
+      redirect_to repositories_path, alert: @repository.errors.full_messages.join(', ')
+    end
+  end
+
+  private
+
+  def permitted_params
+    params.require(:repository).permit(:github_id)
+  end
+
+  def get_user_repositories(token)
+    client = Octokit::Client.new access_token: token, auto_paginate: true
+    client.repos
+  end
+
+  def user_repositories
+    @user_repositories ||= get_user_repositories(current_user.token)
+  end
 end

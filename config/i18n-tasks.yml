@@ -122,10 +122,11 @@ ignore_unused:
   - 'helpers.*'
   - 'close'
   - 'activerecord.attributes.*'
-  # - '{devise,kaminari,will_paginate}.*'
+  - 'activerecord.errors.messages.*'
   - 'simple_form.{yes,no}'
   - 'simple_form.{placeholders,hints,labels}.*'
   - 'simple_form.{error_notification,required}.:'
+  # - '{devise,kaminari,will_paginate}.*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

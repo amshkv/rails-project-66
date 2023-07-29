@@ -6,3 +6,6 @@ ru:
   logout:
     success: Вы успешно вышли из системы!
   not_authenticated: Пожалуйста, войдите в систему, чтобы продолжить
+  repository:
+    create:
+      success: Репозиторий успешно добавлен
