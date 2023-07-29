@@ -4,6 +4,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
+require 'webmock/minitest'
+
 OmniAuth.config.test_mode = true
 
 class ActiveSupport::TestCase

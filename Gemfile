@@ -101,4 +101,5 @@ group :test do
   gem 'minitest-power_assert'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'webmock'
 end
