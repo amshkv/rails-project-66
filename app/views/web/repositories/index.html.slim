@@ -1,2 +1,18 @@
-h1 Web::Repositories#index
-p Find me in app/views/web/repositories/index.html.slim
+= content_for :title do
+  = t('.title')
+
+= link_to t('.new_repository'), new_repository_path, class: 'btn btn-primary mb-4'
+
+- if @repositories.any?
+  .table-responsive
+    table.table.table-striped
+      thead
+        th = han(:repository, :name)
+        th = han(:repository, :language)
+      tbody
+        - @repositories.each do |repository|
+          tr
+            td = repository.name
+            td = repository.language
+- else
+  .lead = t('.no_repositories')

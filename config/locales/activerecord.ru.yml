@@ -1,0 +1,7 @@
+---
+ru:
+  activerecord:
+    attributes:
+      repository:
+        language: Язык
+        name: Название

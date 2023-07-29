@@ -3,7 +3,9 @@
 class Web::RepositoriesController < Web::ApplicationController
   before_action :authenticate_user!
 
-  def index; end
+  def index
+    @repositories = current_user.repositories
+  end
 
   def new; end
 
