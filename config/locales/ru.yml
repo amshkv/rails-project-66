@@ -5,6 +5,7 @@ ru:
   layouts:
     application:
       copyright: "© %{year}"
+      repositories: Репозитории
       sign_in: Войти
       sign_out: Выйти
       toggle_navigation: Переключить меню
