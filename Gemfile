@@ -52,6 +52,7 @@ gem 'bootsnap', require: false
 
 gem 'enumerize'
 gem 'flash_rails_messages'
+gem 'octokit'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'sentry-rails'
