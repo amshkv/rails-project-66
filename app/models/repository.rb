@@ -9,11 +9,13 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  github_id  :string
 #  user_id    :integer          not null
 #
 # Indexes
 #
-#  index_repositories_on_user_id  (user_id)
+#  index_repositories_on_github_id  (github_id) UNIQUE
+#  index_repositories_on_user_id    (user_id)
 #
 # Foreign Keys
 #
@@ -21,4 +23,6 @@
 #
 class Repository < ApplicationRecord
   belongs_to :user
+
+  validates :github_id, presence: true, uniqueness: true
 end
