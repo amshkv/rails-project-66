@@ -1,0 +1,10 @@
+---
+ru:
+  simple_form:
+    error_notification:
+      default_message: 'Пожалуйста, исправьте эти ошибки:'
+    'no': Нет
+    required:
+      html: <abbr title="обязательно">*</abbr>
+      text: обязательно
+    'yes': Да

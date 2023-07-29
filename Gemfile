@@ -57,6 +57,7 @@ gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'sentry-rails'
 gem 'sentry-ruby'
+gem 'simple_form'
 gem 'slim-rails'
 
 group :production do
