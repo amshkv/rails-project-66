@@ -39,11 +39,13 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def get_user_repositories(token)
-    client = Octokit::Client.new access_token: token, auto_paginate: true
-    client.repos
+    Rails.cache.fetch("#{current_user.cache_key_with_version}/user_repositories3", expires_in: 12.hours) do
+      client = Octokit::Client.new access_token: token, auto_paginate: true
+      client.repos
+    end
   end
 
   def user_repositories
-    @user_repositories ||= get_user_repositories(current_user.token)
+    get_user_repositories(current_user.token)
   end
 end
