@@ -5,8 +5,11 @@
 # Table name: repositories
 #
 #  id         :integer          not null, primary key
+#  full_name  :string
+#  git_url    :string
 #  language   :string
 #  name       :string
+#  ssh_url    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  github_id  :string
