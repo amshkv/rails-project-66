@@ -32,6 +32,4 @@ class Repository < ApplicationRecord
   enumerize :language, in: %i[javascript], predicates: true
 
   validates :github_id, presence: true, uniqueness: true
-  validates :name, presence: true
-  validates :language, presence: true
 end
