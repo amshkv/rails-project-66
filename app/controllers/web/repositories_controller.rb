@@ -38,14 +38,14 @@ class Web::RepositoriesController < Web::ApplicationController
     params.require(:repository).permit(:github_id)
   end
 
-  def get_user_repositories(token)
-    Rails.cache.fetch("#{current_user.cache_key_with_version}/user_repositories3", expires_in: 12.hours) do
-      client = Octokit::Client.new access_token: token, auto_paginate: true
+  def get_user_repositories(user)
+    Rails.cache.fetch("#{user.cache_key_with_version}/user_repositories", expires_in: 12.hours) do
+      client = Octokit::Client.new access_token: user.token, auto_paginate: true
       client.repos
     end
   end
 
   def user_repositories
-    get_user_repositories(current_user.token)
+    get_user_repositories(current_user)
   end
 end
