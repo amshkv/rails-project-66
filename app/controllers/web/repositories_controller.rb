@@ -24,6 +24,7 @@ class Web::RepositoriesController < Web::ApplicationController
       FetchUserRepositoryInfoJob.perform_later(@repository.id)
       redirect_to repositories_path, notice: I18n.t('repository.create.success')
     else
+      # NOTE: не стал делать рендер, чтобы тут не дублировать выборку всех реп, хотя можно вынести в отдельный метод?
       redirect_to repositories_path, alert: @repository.errors.full_messages.join(', ')
     end
   end
