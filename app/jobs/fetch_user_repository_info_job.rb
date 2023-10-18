@@ -8,6 +8,9 @@ class FetchUserRepositoryInfoJob < ApplicationJob
   def perform(repo_id)
     repository = Repository.find repo_id
     github_id = repository.github_id.to_i
+
+    repository.fetch!
+
     client = Octokit::Client.new
     github_data = client.repo(github_id)
 
@@ -18,5 +21,11 @@ class FetchUserRepositoryInfoJob < ApplicationJob
       name: github_data.name,
       ssh_url: github_data.ssh_url
     )
+
+    repository.mark_as_fetched!
+  rescue StandardError
+    # NOTE: тут наверное можно обрабатывать ошибку, типа посылать в сентри или еще куда
+    # и я не знаю кстати как отработает джоба, когда падает ошибка, в сайдкике вроде будет перезапуск, надо поизучтаь это
+    repository.mark_as_failed!
   end
 end

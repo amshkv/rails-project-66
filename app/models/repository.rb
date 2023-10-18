@@ -5,6 +5,7 @@
 # Table name: repositories
 #
 #  id         :integer          not null, primary key
+#  aasm_state :string
 #  full_name  :string
 #  git_url    :string
 #  language   :string
@@ -25,6 +26,7 @@
 #  user_id  (user_id => users.id)
 #
 class Repository < ApplicationRecord
+  include AASM
   extend Enumerize
 
   belongs_to :user
@@ -32,4 +34,21 @@ class Repository < ApplicationRecord
   enumerize :language, in: %i[javascript], predicates: true
 
   validates :github_id, presence: true, uniqueness: true
+
+  aasm do
+    state :created, initial: true
+    state :fetching
+    state :fetched
+    state :failed
+
+    event :fetch do
+      transitions from: %i[created fetched failed], to: :fetching
+    end
+    event :mark_as_fetched do
+      transitions from: :fetching, to: :fetched
+    end
+    event :mark_as_failed do
+      transitions to: :failed
+    end
+  end
 end

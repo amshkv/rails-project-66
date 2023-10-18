@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_181119) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_203014) do
   create_table "repositories", force: :cascade do |t|
     t.string "name"
     t.string "language"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_181119) do
     t.string "git_url"
     t.string "ssh_url"
     t.string "full_name"
+    t.string "aasm_state"
     t.index ["github_id"], name: "index_repositories_on_github_id", unique: true
     t.index ["user_id"], name: "index_repositories_on_user_id"
   end
