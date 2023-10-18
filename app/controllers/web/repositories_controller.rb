@@ -18,14 +18,10 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def create
     @repository = current_user.repositories.find_or_initialize_by(permitted_params)
-    repo = user_repositories.find { |r| r.id == @repository.github_id.to_i }
-
-    if repo
-      @repository.name = repo.name
-      @repository.language = repo.language.downcase
-    end
 
     if @repository.save
+      # NOTE: не определился, что передавать, id или github_id
+      FetchUserRepositoryInfoJob.perform_later(@repository.id)
       redirect_to repositories_path, notice: I18n.t('repository.create.success')
     else
       redirect_to repositories_path, alert: @repository.errors.full_messages.join(', ')
