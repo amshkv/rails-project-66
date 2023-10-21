@@ -32,7 +32,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
       .to_return(
         status: 200,
-        body: load_fixture('files/repository_response.json'),
+        body: load_fixture('files/repositories_response.json'),
         headers: { 'Content-Type' => 'application/json' }
       )
 
@@ -47,7 +47,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'signed user create repo' do
     sign_in(@user)
-    stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
+    stub_request(:get, 'https://api.github.com/repositories/165602591')
       .to_return(
         status: 200,
         body: load_fixture('files/repository_response.json'),
@@ -56,9 +56,10 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
     post repositories_url, params: { repository: @attrs }
 
-    repo = Repository.find_by(github_id: @attrs[:github_id])
+    repo = Repository.find_by @attrs
 
     assert { repo }
+    assert { repo.fetched? }
     assert { repo.name.present? }
     assert_redirected_to repositories_url
   end

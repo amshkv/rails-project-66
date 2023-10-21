@@ -3,6 +3,8 @@
 require 'i18n/tasks'
 
 class I18nTest < ActiveSupport::TestCase
+  # NOTE: без этого явного инклюда падают i18n таски-тесты при запуске всех тестов, когда мы конфигурируем очередь
+  include ActiveJob::TestHelper
   def setup
     @i18n = I18n::Tasks::BaseTask.new
     @missing_keys = @i18n.missing_keys

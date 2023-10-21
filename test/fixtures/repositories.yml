@@ -29,3 +29,4 @@ base:
   language: javascript
   user: base
   github_id: lalajopa
+  aasm_state: created
