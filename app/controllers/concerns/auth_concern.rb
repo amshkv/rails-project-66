@@ -19,6 +19,7 @@ module AuthConcern
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  # NOTE: на работе возник вопрос, надо ли этот метод делать со знаком восклицания? тут вроде никакой модификации не происходит
   def authenticate_user!
     redirect_to root_path, alert: I18n.t('not_authenticated') unless signed_in?
   end
