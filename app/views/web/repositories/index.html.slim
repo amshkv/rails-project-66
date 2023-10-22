@@ -12,7 +12,9 @@
       tbody
         - @repositories.each do |repository|
           tr
-            td = repository.name || '-'
+            td
+              = link_to repository_path(repository) do
+                = repository.name || '-'
             td = repository.language
 - else
   .lead = t('.no_repositories')

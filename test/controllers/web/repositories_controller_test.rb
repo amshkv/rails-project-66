@@ -5,6 +5,7 @@ require 'test_helper'
 class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:base)
+    @repository = repositories(:base)
     @attrs = {
       github_id: 165_602_591 # TODO: как-то неудобно что тут я знаю id из json, это ок?
     }
@@ -30,6 +31,13 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
 
     get new_repository_url
+    assert_response :success
+  end
+
+  test 'signed user get show' do
+    sign_in(@user)
+
+    get repository_url(@repository)
     assert_response :success
   end
 

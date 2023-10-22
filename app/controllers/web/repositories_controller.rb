@@ -9,6 +9,10 @@ class Web::RepositoriesController < Web::ApplicationController
     @repositories = current_user.repositories
   end
 
+  def show
+    @repository = current_user.repositories.find(params[:id])
+  end
+
   def new
     filtered_repos = user_repositories.filter { |repo| Repository.language.value? repo['language']&.downcase }
     @repositories = filtered_repos.map { |repo| [repo['full_name'], repo['id']] }

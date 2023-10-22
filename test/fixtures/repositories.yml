@@ -28,5 +28,5 @@ base:
   name: 'rails-project-66'
   language: javascript
   user: base
-  github_id: lalajopa
+  github_id: 1
   aasm_state: created
