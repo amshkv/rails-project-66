@@ -29,13 +29,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   test 'signed user get new' do
     sign_in(@user)
 
-    stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
-      .to_return(
-        status: 200,
-        body: load_fixture('files/repositories_response.json'),
-        headers: { 'Content-Type' => 'application/json' }
-      )
-
     get new_repository_url
     assert_response :success
   end
@@ -47,12 +40,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'signed user create repo' do
     sign_in(@user)
-    stub_request(:get, 'https://api.github.com/repositories/165602591')
-      .to_return(
-        status: 200,
-        body: load_fixture('files/repository_response.json'),
-        headers: { 'Content-Type' => 'application/json' }
-      )
 
     post repositories_url, params: { repository: @attrs }
 

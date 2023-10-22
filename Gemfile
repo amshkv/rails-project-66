@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'aasm'
+gem 'dry-container'
 gem 'enumerize'
 gem 'flash_rails_messages'
 gem 'octokit'

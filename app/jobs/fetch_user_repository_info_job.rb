@@ -11,15 +11,15 @@ class FetchUserRepositoryInfoJob < ApplicationJob
 
     repository.fetch!
 
-    client = Octokit::Client.new
+    client = ApplicationContainer[:octokit].new
     github_data = client.repo(github_id)
 
     repository.update!(
-      full_name: github_data.full_name,
-      git_url: github_data.git_url,
-      language: github_data.language.downcase,
-      name: github_data.name,
-      ssh_url: github_data.ssh_url
+      full_name: github_data['full_name'],
+      git_url: github_data['git_url'],
+      language: github_data['language'].downcase,
+      name: github_data['name'],
+      ssh_url: github_data['ssh_url']
     )
 
     repository.mark_as_fetched!

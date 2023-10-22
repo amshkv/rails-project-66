@@ -10,8 +10,8 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def new
-    filtered_repos = user_repositories.filter { |repo| Repository.language.value? repo.language&.downcase }
-    @repositories = filtered_repos.map { |repo| [repo.full_name, repo.id] }
+    filtered_repos = user_repositories.filter { |repo| Repository.language.value? repo['language']&.downcase }
+    @repositories = filtered_repos.map { |repo| [repo['full_name'], repo['id']] }
 
     @repository = current_user.repositories.new
   end
@@ -37,7 +37,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def get_user_repositories(user)
     Rails.cache.fetch("#{user.cache_key_with_version}/user_repositories", expires_in: 12.hours) do
-      client = Octokit::Client.new access_token: user.token, auto_paginate: true
+      client = ApplicationContainer[:octokit].new access_token: user.token, auto_paginate: true
       client.repos
     end
   end
