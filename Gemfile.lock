@@ -398,6 +398,7 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rails-i18n
   rubocop
   rubocop-performance
   rubocop-rails
