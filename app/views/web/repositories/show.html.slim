@@ -1,12 +1,10 @@
 = content_for :title do
-  = @repository.full_name
+  = repository_name(@repository)
 
 .mt-5
   strong = t('.name')
   '
-  / NOTE: может где-то сделать нормальный метод, который будет возвращать имя репозитория или пустоту, если имени еще нет?
-  / чтобы не дублировать эту логику везде
-  = @repository.full_name || '-'
+  = repository_name(@repository)
 
 .mt-3
   strong = t('.language')
