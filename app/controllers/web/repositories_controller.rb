@@ -3,7 +3,7 @@
 require 'octokit'
 
 class Web::RepositoriesController < Web::ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user
 
   def index
     @repositories = current_user.repositories
