@@ -1,0 +1,30 @@
+= content_for :title do
+  = t('.check_repository', id: @check.id)
+
+.mt-5
+  = link_to t('.back_to_reposithory'), repository_path(@check.repository), class: 'btn btn-primary'
+
+.mt-3
+  strong = t('.created_date')
+  '
+  = l @check.created_at, format: :long
+
+.mt-3
+  strong = t('.state')
+  '
+  = @check.aasm_state
+
+.mt-3
+  strong = t('.success_check')
+  '
+  = @check.success_check
+
+.mt-3
+  strong = t('.lint_messages_count')
+  '
+  = @check.lint_messages_count
+
+.mt-3
+  strong = t('.commit_id')
+  '
+  = @check.commit_id

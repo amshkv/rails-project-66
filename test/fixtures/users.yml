@@ -17,3 +17,6 @@ DEFAULTS: &DEFAULTS
 
 base:
   <<: *DEFAULTS
+
+without_repositories:
+  <<: *DEFAULTS

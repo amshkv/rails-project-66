@@ -30,3 +30,10 @@ base:
   user: base
   github_id: 1
   aasm_state: created
+
+without_checks:
+  name: lalajopa
+  language: javascript
+  user: base
+  github_id: 2
+  aasm_state: created

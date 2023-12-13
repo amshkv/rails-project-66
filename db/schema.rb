@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_18_203014) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_27_195111) do
   create_table "repositories", force: :cascade do |t|
     t.string "name"
     t.string "language"
@@ -26,6 +26,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_203014) do
     t.index ["user_id"], name: "index_repositories_on_user_id"
   end
 
+  create_table "repository_checks", force: :cascade do |t|
+    t.string "commit_id"
+    t.string "aasm_state"
+    t.integer "lint_messages_count"
+    t.boolean "success_check", default: false, null: false
+    t.json "lint_messages"
+    t.integer "repository_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repository_id"], name: "index_repository_checks_on_repository_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "nickname"
@@ -35,4 +47,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_203014) do
   end
 
   add_foreign_key "repositories", "users"
+  add_foreign_key "repository_checks", "repositories"
 end

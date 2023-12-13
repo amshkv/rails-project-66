@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: repository_checks
+#
+#  id                  :integer          not null, primary key
+#  aasm_state          :string
+#  lint_messages       :json
+#  lint_messages_count :integer
+#  success_check       :boolean          default(FALSE), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  commit_id           :string
+#  repository_id       :integer          not null
+#
+# Indexes
+#
+#  index_repository_checks_on_repository_id  (repository_id)
+#
+# Foreign Keys
+#
+#  repository_id  (repository_id => repositories.id)
+#
+
+one:
+  commit_id: 1234567890
+  success_check: false
+  repository: base
+  lint_messages_count: 1
+  lint_messages: lalajopa

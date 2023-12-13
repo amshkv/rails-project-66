@@ -9,8 +9,18 @@ ru:
       sign_in: Войти
       sign_out: Выйти
       toggle_navigation: Переключить меню
+  not_authorized: Не хватило прав для совершения этого действия
   web:
     repositories:
+      checks:
+        show:
+          back_to_reposithory: Назад к репозиторию
+          check_repository: Проверка репозитория №%{id}
+          commit_id: Id коммита
+          created_date: Дата проверки
+          lint_messages_count: Количество ошибок линтера
+          state: Состояние
+          success_check: Успешная проверка?
       index:
         new_repository: Добавить репозиторий
         no_repositories: Здесь пока нет репозиториев, добавьте первый репозиторий и мы начнем его анализ
@@ -18,9 +28,14 @@ ru:
       new:
         title: Добавление репозитория
       show:
+        check_created_at: Дата создания
+        check_repository: Проверить репозиторий
+        commit_id: Id коммита
         created_at: 'Дата создания:'
         language: 'Язык:'
         name: 'Имя репозитория:'
+        state: Состояние
+        success_check: Успешная проверка?
         updated_at: 'Дата обновления:'
     welcome:
       index:
