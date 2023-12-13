@@ -3,8 +3,8 @@
 require 'test_helper'
 class Web::AuthControllerTest < ActionDispatch::IntegrationTest
   test 'check github auth' do
-    post auth_request_url(:github)
-    assert_redirected_to callback_auth_url(:github)
+    post auth_request_path(:github)
+    assert_redirected_to callback_auth_path(:github)
   end
 
   test 'create' do
@@ -22,8 +22,8 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
 
-    get callback_auth_url('github')
-    assert_redirected_to root_url
+    get callback_auth_path('github')
+    assert_redirected_to root_path
 
     user = User.find_by(email: auth_hash[:info][:email].downcase)
 
@@ -48,8 +48,8 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
 
-    get callback_auth_url('github')
-    assert_redirected_to root_url
+    get callback_auth_path('github')
+    assert_redirected_to root_path
 
     user.reload
 
@@ -61,8 +61,8 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
     user = users(:base)
     sign_in(user)
 
-    delete auth_logout_url
-    assert_redirected_to root_url
+    delete auth_logout_path
+    assert_redirected_to root_path
 
     assert { !signed_in? }
   end

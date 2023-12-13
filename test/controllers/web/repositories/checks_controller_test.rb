@@ -11,30 +11,30 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cant show check page' do
-    get repository_check_url(@repository, @check)
+    get repository_check_path(@repository, @check)
 
-    assert_redirected_to root_url
+    assert_redirected_to root_path
   end
 
   test 'not author cant show check page' do
     sign_in(@user_without_repositories)
 
-    get repository_check_url(@repository, @check)
+    get repository_check_path(@repository, @check)
 
-    assert_redirected_to root_url
+    assert_redirected_to root_path
   end
 
   test 'signed user get show' do
     sign_in(@user)
 
-    get repository_check_url(@repository, @check)
+    get repository_check_path(@repository, @check)
 
     assert_response :success
   end
 
   test 'guest cant create check' do
     post repository_checks_path(@repository)
-    assert_redirected_to root_url
+    assert_redirected_to root_path
   end
 
   test 'another signed user cant create check' do
@@ -44,7 +44,7 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     checks = Repository::Check.where repository: @repository.id
 
-    assert_redirected_to root_url
+    assert_redirected_to root_path
     assert checks.empty?
   end
 

@@ -12,50 +12,50 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest cant get index' do
-    get repositories_url
-    assert_redirected_to root_url
+    get repositories_path
+    assert_redirected_to root_path
   end
 
   test 'guest cant get new' do
-    get new_repository_url
-    assert_redirected_to root_url
+    get new_repository_path
+    assert_redirected_to root_path
   end
 
   test 'signed user get index' do
     sign_in(@user)
-    get repositories_url
+    get repositories_path
     assert_response :success
   end
 
   test 'signed user get new' do
     sign_in(@user)
 
-    get new_repository_url
+    get new_repository_path
     assert_response :success
   end
 
   test 'signed user get show' do
     sign_in(@user)
 
-    get repository_url(@repository)
+    get repository_path(@repository)
     assert_response :success
   end
 
   test 'guest cant create repo' do
-    post repositories_url, params: { repository: @attrs }
-    assert_redirected_to root_url
+    post repositories_path, params: { repository: @attrs }
+    assert_redirected_to root_path
   end
 
   test 'signed user create repo' do
     sign_in(@user)
 
-    post repositories_url, params: { repository: @attrs }
+    post repositories_path, params: { repository: @attrs }
 
     repo = Repository.find_by @attrs
 
     assert { repo }
     assert { repo.fetched? }
     assert { repo.name.present? }
-    assert_redirected_to repositories_url
+    assert_redirected_to repositories_path
   end
 end
