@@ -24,20 +24,26 @@
   '
   = l @repository.updated_at, format: :long
 
-table.table.table-responsive.table-striped.mt-5
-  thead
-    tr
-      th
-      th = t('.state')
-      th = t('.commit_id')
-      th = t('.success_check')
-      th = t('.check_created_at')
-  tbody
-    - @repository.checks.each do |check|
+- if @checks.any?
+  table.table.table-responsive.table-striped.mt-5
+    thead
       tr
-        td
-          = link_to check.id, repository_check_path(@repository.id, check.id)
-        td = check.aasm_state
-        td
-        td
-        td = l check.created_at, format: :long
+        th
+        th = t('.state')
+        th = t('.commit_id')
+        th = t('.success_check')
+        th = t('.check_created_at')
+    tbody
+      - @checks.each do |check|
+        tr
+          td
+            = link_to check.id, repository_check_path(@repository.id, check.id)
+          td = check.aasm_state
+          td
+            - if check.finished?
+              = link_to check.commit_id, commit_curl(check.repository.full_name, check.commit_id)
+          td = check.success_check
+          td = l check.created_at, format: :long
+
+- else
+  .mt-5.h3 = t('.empty_checks')

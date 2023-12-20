@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'octokit'
-
 class FetchUserRepositoryInfoJob < ApplicationJob
   queue_as :default
 

@@ -18,12 +18,17 @@ ru:
           check_repository: Проверка репозитория №%{id}
           commit_id: Id коммита
           created_date: Дата проверки
+          error: Ошибка
           lint_messages_count: Количество ошибок линтера
+          message: Сообщение
+          position: Позиция
           state: Состояние
           success_check: Успешная проверка?
       index:
+        last_check_status: Статус последней проверки
         new_repository: Добавить репозиторий
         no_repositories: Здесь пока нет репозиториев, добавьте первый репозиторий и мы начнем его анализ
+        not_started: Проверки еще не запускались
         title: Репозитории
       new:
         title: Добавление репозитория
@@ -32,6 +37,7 @@ ru:
         check_repository: Проверить репозиторий
         commit_id: Id коммита
         created_at: 'Дата создания:'
+        empty_checks: Пока нет проверок, поэтому тут пусто
         language: 'Язык:'
         name: 'Имя репозитория:'
         state: Состояние

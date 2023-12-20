@@ -9,6 +9,7 @@
       thead
         th = han(:repository, :name)
         th = han(:repository, :language)
+        th = t('.last_check_status')
       tbody
         - @repositories.each do |repository|
           tr
@@ -16,5 +17,10 @@
               = link_to repository_path(repository) do
                 = repository.name || '-'
             td = repository.language
+            td
+              - if repository.checks.any?
+                = repository.checks.last.success_check
+              - else
+                = t('.not_started')
 - else
   .lead = t('.no_repositories')

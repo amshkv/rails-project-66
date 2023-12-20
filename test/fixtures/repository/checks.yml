@@ -21,9 +21,196 @@
 #  repository_id  (repository_id => repositories.id)
 #
 
-one:
+started:
+  aasm_state: started
+  repository: base
+
+finished:
   commit_id: 1234567890
   success_check: false
+  aasm_state: finished
   repository: base
-  lint_messages_count: 1
-  lint_messages: lalajopa
+  lint_messages_count: 4
+  lint_messages: |
+    [
+      {
+        "filePath": "/Users/andrey/Projects/learning/rails-project-66/tmp/repos/48/index.js",
+        "messages":
+      [
+          {
+            "ruleId": "semi",
+            "severity": 2,
+            "message": "Missing semicolon.",
+            "line": 1,
+            "column": 39,
+            "nodeType": "ExpressionStatement",
+            "messageId": "missingSemi",
+            "endLine": 1,
+            "endColumn": 40,
+            "fix": {
+              "range": [
+                38,
+                38
+              ],
+              "text": ";"
+            }
+          },
+          {
+            "ruleId": "semi",
+            "severity": 2,
+            "message": "Missing semicolon.",
+            "line": 1,
+            "column": 41,
+            "nodeType": "ExportDefaultDeclaration",
+            "messageId": "missingSemi",
+            "endLine": 2,
+            "endColumn": 1,
+            "fix": {
+              "range": [
+                40,
+                40
+              ],
+              "text": ";"
+            }
+          }
+        ],
+        "suppressedMessages": [],
+        "errorCount": 2,
+        "fatalErrorCount": 0,
+        "warningCount": 0,
+        "fixableErrorCount": 2,
+        "fixableWarningCount": 0,
+        "source": "export default () :  { 'Hello, World!' }\n",
+        "usedDeprecatedRules":
+      [
+          {
+            "ruleId": "lines-around-directive",
+            "replacedBy": [
+              "padding-line-between-statements"
+            ]
+          },
+          {
+            "ruleId": "no-new-object",
+            "replacedBy": [
+              "no-object-constructor"
+            ]
+          },
+          {
+            "ruleId": "no-spaced-func",
+            "replacedBy": [
+              "func-call-spacing"
+            ]
+          },
+          {
+            "ruleId": "global-require",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-buffer-constructor",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-new-require",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-path-concat",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-return-await",
+            "replacedBy": []
+          }
+        ]
+      },
+      {
+        "filePath": "/Users/andrey/Projects/learning/rails-project-66/tmp/repos/48/index2.js",
+        "messages":
+      [
+          {
+            "ruleId": "semi",
+            "severity": 2,
+            "message": "Missing semicolon.",
+            "line": 1,
+            "column": 39,
+            "nodeType": "ExpressionStatement",
+            "messageId": "missingSemi",
+            "endLine": 1,
+            "endColumn": 40,
+            "fix": {
+              "range": [
+                38,
+                38
+              ],
+              "text": ";"
+            }
+          },
+          {
+            "ruleId": "semi",
+            "severity": 2,
+            "message": "Missing semicolon.",
+            "line": 1,
+            "column": 41,
+            "nodeType": "ExportDefaultDeclaration",
+            "messageId": "missingSemi",
+            "endLine": 2,
+            "endColumn": 1,
+            "fix": {
+              "range": [
+                40,
+                40
+              ],
+              "text": ";"
+            }
+          }
+        ],
+        "suppressedMessages": [],
+        "errorCount": 2,
+        "fatalErrorCount": 0,
+        "warningCount": 0,
+        "fixableErrorCount": 2,
+        "fixableWarningCount": 0,
+        "source": "export default () :  { 'World, Hello!' }\n",
+        "usedDeprecatedRules":
+      [
+          {
+            "ruleId": "lines-around-directive",
+            "replacedBy": [
+              "padding-line-between-statements"
+            ]
+          },
+          {
+            "ruleId": "no-new-object",
+            "replacedBy": [
+              "no-object-constructor"
+            ]
+          },
+          {
+            "ruleId": "no-spaced-func",
+            "replacedBy": [
+              "func-call-spacing"
+            ]
+          },
+          {
+            "ruleId": "global-require",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-buffer-constructor",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-new-require",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-path-concat",
+            "replacedBy": []
+          },
+          {
+            "ruleId": "no-return-await",
+            "replacedBy": []
+          }
+        ]
+      }
+    ]

@@ -27,4 +27,24 @@
 .mt-3
   strong = t('.commit_id')
   '
-  = @check.commit_id
+  - if @check.finished?
+    = link_to @check.commit_id, commit_curl(@check.repository.full_name, @check.commit_id)
+
+- if @check.lint_messages_count.positive?
+  .table-responsive.mt-5
+    table.table.table-striped
+      thead
+        tr
+          td = t('.message')
+          td = t('.error')
+          td = t('.position')
+      tbody
+        - @check_errors.each do |group|
+          tr
+            td{ colspan=3 }
+              = group[:file_path]
+          - group[:errors].each do |error|
+            tr
+              td = error[:message]
+              td = error[:rule]
+              td = error[:position]

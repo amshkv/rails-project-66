@@ -6,11 +6,12 @@ class Web::RepositoriesController < Web::ApplicationController
   before_action :authenticate_user
 
   def index
-    @repositories = current_user.repositories
+    @repositories = current_user.repositories.includes([:checks])
   end
 
   def show
     @repository = current_user.repositories.find(params[:id])
+    @checks = @repository.checks.order(id: :desc)
   end
 
   def new
