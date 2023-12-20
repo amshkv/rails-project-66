@@ -32,11 +32,12 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
   def get_linter_errors(check)
     json = JSON.parse(check.lint_messages)
     Rails.cache.fetch(check.cache_key_with_version, expires_in: 12.hours) do
-      serialize_errors(json)
+      # NOTE: кажется лучше через when?
+      check.repository.language == 'ruby' ? serialize_errors_ruby(json) : serialize_errors_javascript(json)
     end
   end
 
-  def serialize_errors(json)
+  def serialize_errors_javascript(json)
     json.map do |line|
       errors = line['messages'].map do |error|
         {
@@ -46,6 +47,22 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
         }
       end
       file_path = line['filePath']
+      { file_path:, errors: }
+    end
+  end
+
+  def serialize_errors_ruby(json)
+    files = json['files']
+    files_with_errors = files.filter { |file| file['offenses'].any? }
+    files_with_errors.map do |file|
+      errors = file['offenses'].map do |error|
+        {
+          message: error['message'],
+          rule: error['cop_name'],
+          position: "#{error['location']['line']}:#{error['location']['column']}"
+        }
+      end
+      file_path = file['path']
       { file_path:, errors: }
     end
   end

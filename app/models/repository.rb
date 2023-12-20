@@ -32,7 +32,7 @@ class Repository < ApplicationRecord
   belongs_to :user
   has_many :checks, dependent: :destroy
 
-  enumerize :language, in: %i[javascript], predicates: true
+  enumerize :language, in: %i[javascript ruby], predicates: true
 
   validates :github_id, presence: true, uniqueness: true
 

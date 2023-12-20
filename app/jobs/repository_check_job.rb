@@ -13,6 +13,7 @@ class RepositoryCheckJob < ApplicationJob
     commits = client.commits(github_id)
     last_commit_id = commits[0]['sha']
     commit_id = last_commit_id[0..6]
+    language = github_data['language'].downcase.to_sym
 
     repo_dir = File.join('tmp', 'repos', check_id.to_s)
 
@@ -22,12 +23,18 @@ class RepositoryCheckJob < ApplicationJob
       raise StandardError
     end
 
-    lint_command = "npx eslint #{repo_dir} -f json"
+    lint_commands_by_languages = {
+      ruby: "rubocop #{repo_dir} --format json",
+      javascript: "npx eslint #{repo_dir} -f json"
+    }
+
+    lint_command = lint_commands_by_languages[language]
 
     lint_errors, lint_exit_status = ApplicationContainer[:repository_check_utils].start_lint_command(lint_command)
 
     # NOTE: тут падает, если JSON не валидный, падает на parse
-    lint_messages_count = sum_lint_messages(JSON.parse(lint_errors))
+    parsed_json = JSON.parse(lint_errors)
+    lint_messages_count = language == :ruby ? sum_lint_messages_on_ruby(parsed_json) : sum_lint_messages_on_javascript(parsed_json)
 
     check.update!(
       commit_id:,
@@ -44,7 +51,11 @@ class RepositoryCheckJob < ApplicationJob
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
   end
 
-  def sum_lint_messages(json)
+  def sum_lint_messages_on_javascript(json)
     json.pluck('errorCount').sum
+  end
+
+  def sum_lint_messages_on_ruby(json)
+    json['summary']['offense_count']
   end
 end
