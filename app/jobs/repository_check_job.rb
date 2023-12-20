@@ -24,7 +24,7 @@ class RepositoryCheckJob < ApplicationJob
     end
 
     lint_commands_by_languages = {
-      ruby: "rubocop #{repo_dir} --format json",
+      ruby: "bundle exec rubocop #{repo_dir} --format json",
       javascript: "npx eslint #{repo_dir} -f json"
     }
 
