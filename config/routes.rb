@@ -19,4 +19,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :api do
+    post 'checks', to: 'checks#create'
+  end
 end

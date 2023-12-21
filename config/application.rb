@@ -20,5 +20,8 @@ module RailsProject66
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # для вебхуков
+    routes.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
   end
 end
