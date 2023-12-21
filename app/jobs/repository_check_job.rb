@@ -46,9 +46,10 @@ class RepositoryCheckJob < ApplicationJob
     check.mark_as_finish!
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
   rescue StandardError => e
-    Rails.logger.debug e.inspect
     check.mark_as_failed!
+    Rails.logger.error("#{e.class}: #{e.message}")
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
+    Sentry.capture_exception(e)
   end
 
   def sum_lint_messages_on_javascript(json)
