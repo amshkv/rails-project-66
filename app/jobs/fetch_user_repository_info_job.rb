@@ -23,8 +23,8 @@ class FetchUserRepositoryInfoJob < ApplicationJob
 
     repository.mark_as_fetched!
   rescue StandardError
-    # NOTE: тут наверное можно обрабатывать ошибку, типа посылать в сентри или еще куда
-    # и я не знаю кстати как отработает джоба, когда падает ошибка, в сайдкике вроде будет перезапуск, надо поизучтаь это
     repository.mark_as_failed!
+    Rails.logger.error("#{e.class}: #{e.message}")
+    Sentry.capture_exception(e)
   end
 end
