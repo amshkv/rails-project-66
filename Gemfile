@@ -60,6 +60,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'pundit'
 gem 'rails-i18n'
 gem 'rubocop'
+gem 'rubocop-performance'
+gem 'rubocop-rails'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simple_form'
@@ -93,8 +95,6 @@ group :development do
 
   gem 'annotate'
   gem 'i18n-debug'
-  gem 'rubocop-performance'
-  gem 'rubocop-rails'
   gem 'slim_lint'
 end
 
