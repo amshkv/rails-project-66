@@ -6,10 +6,11 @@ class FetchUserRepositoryInfoJob < ApplicationJob
   def perform(repo_id)
     repository = Repository.find repo_id
     github_id = repository.github_id.to_i
+    token = repository.user.token
 
     repository.fetch!
 
-    client = ApplicationContainer[:octokit].new
+    client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
     github_data = client.repo(github_id)
 
     repository.update!(

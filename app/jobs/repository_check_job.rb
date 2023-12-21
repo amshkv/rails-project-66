@@ -5,9 +5,12 @@ class RepositoryCheckJob < ApplicationJob
 
   def perform(check_id)
     check = Repository::Check.find check_id
-    github_id = check.repository.github_id.to_i
+    repository = check.repository
 
-    client = ApplicationContainer[:octokit].new
+    github_id = repository.github_id.to_i
+    token = repository.user.token
+
+    client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
     github_data = client.repo(github_id)
     clone_url = github_data['clone_url']
     commits = client.commits(github_id)
