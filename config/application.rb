@@ -22,6 +22,6 @@ module RailsProject66
     # config.eager_load_paths << Rails.root.join("extras")
 
     # для вебхуков
-    routes.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
+    routes.default_url_options = { host: ENV.fetch('BASE_URL', 'localhost:3000') }
   end
 end
