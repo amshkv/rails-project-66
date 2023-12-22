@@ -2,6 +2,10 @@
 
 class Api::ChecksController < Api::ApplicationController
   def create
+    event = request.headers['x-github-event']
+
+    return if event != 'push'
+
     payload = JSON.parse(request.body.read)
 
     github_id = payload['repository']['id']
