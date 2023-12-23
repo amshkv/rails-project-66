@@ -12,7 +12,7 @@ class Web::AuthController < Web::ApplicationController
     user.nickname = nickname
     user.token = token
 
-    if user.save!
+    if user.save
       sign_in(user)
       redirect_to root_path, notice: I18n.t('login.success')
     else
