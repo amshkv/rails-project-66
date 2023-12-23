@@ -4,7 +4,7 @@ class Api::ChecksController < Api::ApplicationController
   def create
     event = request.headers['x-github-event']
 
-    return if event != 'push'
+    return head :ok if event != 'push'
 
     payload = JSON.parse(request.body.read)
 
@@ -12,10 +12,10 @@ class Api::ChecksController < Api::ApplicationController
 
     repo = Repository.find_by(github_id:)
 
-    return unless repo
+    return head :ok unless repo
 
     check = repo.checks.new
-    return unless check.save
+    return head :ok unless check.save
 
     RepositoryCheckJob.perform_later(check.id)
 
