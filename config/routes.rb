@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    post 'checks', to: 'checks#create'
+    resources :checks, only: %i[create]
   end
 end
