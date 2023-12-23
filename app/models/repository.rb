@@ -6,6 +6,7 @@
 #
 #  id         :integer          not null, primary key
 #  aasm_state :string
+#  clone_url  :string
 #  full_name  :string
 #  git_url    :string
 #  language   :string
