@@ -21,10 +21,10 @@ html
             span.navbar-toggler-icon
 
           .collapse.navbar-collapse#navbarScroll
-            ul.navbar-nav.mb-2.mb-md-0.w-100
-              li.nav-item.me-auto
-                = link_to t('.repositories'), repositories_path, class: class_names('nav-link', active: current_page?(repositories_path))
+            ul.navbar-nav.mb-2.mb-md-0.w-100.justify-content-end
               - if signed_in?
+                li.nav-item.me-auto
+                  = link_to t('.repositories'), repositories_path, class: class_names('nav-link', active: current_page?(repositories_path))
                 li.nav-item
                   a.nav-link.disabled.text-white-50 = current_user.email
                 li.nav-item
