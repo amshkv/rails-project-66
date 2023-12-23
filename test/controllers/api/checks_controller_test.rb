@@ -13,10 +13,10 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     post api_checks_path, as: :json, headers: { 'x-github-event': 'push' }, params: payload
 
-    assert_response :success
+    assert_response :ok
 
     check = Repository::Check.find_by repository: repository.id
-    assert_response :success
+
     assert { check }
     assert { check.finished? }
     assert { check.passed == false }

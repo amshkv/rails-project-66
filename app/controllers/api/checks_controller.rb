@@ -18,5 +18,7 @@ class Api::ChecksController < Api::ApplicationController
     return unless check.save
 
     RepositoryCheckJob.perform_later(check.id)
+
+    head :ok
   end
 end
