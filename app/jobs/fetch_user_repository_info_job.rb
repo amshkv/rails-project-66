@@ -23,8 +23,8 @@ class FetchUserRepositoryInfoJob < ApplicationJob
     )
 
     repository.mark_as_fetched!
-  rescue StandardError
-    repository.mark_as_failed!
+  rescue StandardError => e
+    repository&.mark_as_failed!
     Rails.logger.error("#{e.class}: #{e.message}")
     Sentry.capture_exception(e)
   end

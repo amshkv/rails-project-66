@@ -47,7 +47,7 @@ class RepositoryCheckJob < ApplicationJob
     )
     check.mark_as_finish!
   rescue StandardError => e
-    check.mark_as_failed!
+    check&.mark_as_failed!
     Rails.logger.error("#{e.class}: #{e.message}")
     Sentry.capture_exception(e)
   ensure
