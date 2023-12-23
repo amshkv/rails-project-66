@@ -45,7 +45,7 @@ class RepositoryCheckJob < ApplicationJob
       lint_messages: lint_errors,
       lint_messages_count:
     )
-
+    RepositoryCheckMailer.with(check:).failed_check.deliver_later
     check.mark_as_finish!
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
   rescue StandardError => e
