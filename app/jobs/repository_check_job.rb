@@ -41,7 +41,7 @@ class RepositoryCheckJob < ApplicationJob
 
     check.update!(
       commit_id:,
-      success_check: lint_exit_status.zero?, # NOTE: возможно тут надо ориентироваться на кол-во ошибок линтера еще?
+      passed: lint_exit_status.zero?, # NOTE: возможно тут надо ориентироваться на кол-во ошибок линтера еще?
       lint_messages: lint_errors,
       lint_messages_count:
     )

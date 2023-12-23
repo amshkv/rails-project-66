@@ -21,9 +21,9 @@ ru:
           error: Ошибка
           lint_messages_count: Количество ошибок линтера
           message: Сообщение
+          passed: Успешная проверка?
           position: Позиция
           state: Состояние
-          success_check: Успешная проверка?
       index:
         last_check_status: Статус последней проверки
         new_repository: Добавить репозиторий
@@ -40,8 +40,8 @@ ru:
         empty_checks: Пока нет проверок, поэтому тут пусто
         language: 'Язык:'
         name: 'Имя репозитория:'
+        passed: Успешная проверка?
         state: Состояние
-        success_check: Успешная проверка?
         updated_at: 'Дата обновления:'
     welcome:
       index:

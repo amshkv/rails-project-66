@@ -67,7 +67,7 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to repository_path(@repository)
     assert { check }
     assert { check.finished? }
-    assert { check.success_check == false }
+    assert { check.passed == false }
     assert { check.lint_messages_count == 4 }
   end
 end

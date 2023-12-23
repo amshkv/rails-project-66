@@ -19,7 +19,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert { check }
     assert { check.finished? }
-    assert { check.success_check == false }
+    assert { check.passed == false }
     assert { check.lint_messages_count == 4 }
   end
 end

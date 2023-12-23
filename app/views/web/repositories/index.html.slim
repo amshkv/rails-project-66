@@ -19,7 +19,7 @@
             td = repository.language
             td
               - if repository.checks.any?
-                = repository.checks.last.success_check
+                = repository.checks.last.passed
               - else
                 = t('.not_started')
 - else

@@ -8,7 +8,7 @@
 #  aasm_state          :string
 #  lint_messages       :json
 #  lint_messages_count :integer
-#  success_check       :boolean          default(FALSE), not null
+#  passed              :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  commit_id           :string

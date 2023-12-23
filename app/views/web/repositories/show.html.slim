@@ -31,7 +31,7 @@
         th
         th = t('.state')
         th = t('.commit_id')
-        th = t('.success_check')
+        th = t('.passed')
         th = t('.check_created_at')
     tbody
       - @checks.each do |check|
@@ -42,7 +42,7 @@
           td
             - if check.finished?
               = link_to check.commit_id, commit_curl(check.repository.full_name, check.commit_id)
-          td = check.success_check
+          td = check.passed
           td = l check.created_at, format: :long
 
 - else
