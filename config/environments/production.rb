@@ -98,7 +98,7 @@ Rails.application.configure do
     user_name: ENV.fetch('MAIL_USERNAME', nil),
     password: ENV.fetch('MAIL_PASSWORD', nil),
     address: ENV.fetch('MAIL_HOST', nil),
-    domain: ENV.fetch('MAIL_HOST', nil),
+    domain: ENV.fetch('MAIL_DOMAIN', nil),
     port: ENV.fetch('SMTP_PORT', 25),
     authentication: :cram_md5
   }
