@@ -41,7 +41,7 @@
           td = check.aasm_state
           td
             - if check.finished?
-              = link_to check.commit_id, commit_curl(check.repository.full_name, check.commit_id)
+              = commit_link(check.repository.url, check.commit_id)
           td = check.passed
           td = l check.created_at, format: :long
 

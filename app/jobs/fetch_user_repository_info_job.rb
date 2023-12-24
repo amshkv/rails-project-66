@@ -19,7 +19,8 @@ class FetchUserRepositoryInfoJob < ApplicationJob
       language: github_data['language'].downcase,
       name: github_data['name'],
       ssh_url: github_data['ssh_url'],
-      clone_url: github_data['clone_url']
+      clone_url: github_data['clone_url'],
+      url: github_data['html_url']
     )
 
     repository.mark_as_fetched!

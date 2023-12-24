@@ -56,8 +56,7 @@ class RepositoryCheckJob < ApplicationJob
 
     commits = client.commits(github_id) # NOTE: как получить всё остальное понятно, а вот как получить коммиты, из БД?
 
-    last_commit_id = commits[0]['sha']
-    commit_id = last_commit_id[0..6]
+    commit_id = commits[0]['sha']
 
     [language, clone_url, commit_id]
   end

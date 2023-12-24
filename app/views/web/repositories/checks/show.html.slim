@@ -28,7 +28,7 @@
   strong = t('.commit_id')
   '
   - if @check.finished?
-    = link_to @check.commit_id, commit_curl(@check.repository.full_name, @check.commit_id)
+    = commit_link(@check.repository.url, @check.commit_id)
 
 - if @check.lint_messages_count.positive?
   .table-responsive.mt-5
@@ -42,7 +42,7 @@
         - @check_errors.each do |group|
           tr
             td{ colspan=3 }
-              = group[:file_path]
+              = file_path_link(@check, group[:file_path])
           - group[:errors].each do |error|
             tr
               td = error[:message]
