@@ -7,16 +7,7 @@ class RepositoryCheckJob < ApplicationJob
     check = Repository::Check.find check_id
     repository = check.repository
 
-    github_id = repository.github_id.to_i
-    token = repository.user.token
-
-    client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
-    github_data = client.repo(github_id)
-    clone_url = github_data['clone_url']
-    commits = client.commits(github_id)
-    last_commit_id = commits[0]['sha']
-    commit_id = last_commit_id[0..6]
-    language = github_data['language'].downcase.to_sym
+    language, clone_url, commit_id = repository_data(repository)
 
     repo_dir = File.join('tmp', 'repos', check_id.to_s)
 
@@ -61,5 +52,23 @@ class RepositoryCheckJob < ApplicationJob
 
   def sum_lint_messages_on_ruby(json)
     json['summary']['offense_count']
+  end
+
+  def repository_data(repository)
+    token = repository.user.token
+    client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
+
+    github_id = repository.github_id.to_i
+
+    github_data = client.repo(github_id)
+    clone_url = github_data['clone_url']
+    language = github_data['language'].downcase.to_sym
+
+    commits = client.commits(github_id) # NOTE: как получить всё остальное понятно, а вот как получить коммиты, из БД?
+
+    last_commit_id = commits[0]['sha']
+    commit_id = last_commit_id[0..6]
+
+    [language, clone_url, commit_id]
   end
 end
