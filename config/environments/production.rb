@@ -100,6 +100,6 @@ Rails.application.configure do
     address: ENV.fetch('MAIL_HOST', nil),
     domain: ENV.fetch('BASE_URL', nil),
     port: ENV.fetch('SMTP_PORT', 25),
-    authentication: :cram_md5
+    authentication: :plain
   }
 end
