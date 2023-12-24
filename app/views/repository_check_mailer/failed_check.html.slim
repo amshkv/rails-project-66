@@ -1,3 +1,3 @@
-h1 = t('.title', repo: @check.repository.full_name)
+h1 = t('.title', repo: @check.repository.full_name, id: @check.id)
 p = t('.body')
-/ TODO: добавить ссылку на сайт
+p = link_to t('.show_repo'), repository_url(@check.repository)
