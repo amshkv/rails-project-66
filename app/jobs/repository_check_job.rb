@@ -51,7 +51,7 @@ class RepositoryCheckJob < ApplicationJob
     Rails.logger.error("#{e.class}: #{e.message}")
     Sentry.capture_exception(e)
   ensure
-    RepositoryCheckMailer.with(check:).failed_check.deliver_later if check.failed? || !check.passed
+    RepositoryCheckMailer.with(check:).failed_check.deliver_now if check.failed? || !check.passed
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
   end
 
