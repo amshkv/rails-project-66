@@ -10,6 +10,7 @@ module RepositoryCheckUtilsStub
   end
 
   def self.start_lint_command(cmd)
+    # NOTE: такая не совсем красивая логика сделана для проверки хекслет чека и другого языка, чтобы отдать нулевой статус для руби
     language = cmd.split.first == 'npx' ? 'javascript' : 'ruby'
 
     if language == 'javascript'
