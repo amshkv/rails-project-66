@@ -33,9 +33,24 @@ base:
   github_id: 1
   aasm_state: created
 
+base_ruby:
+  name: base_ruby
+  language: ruby
+  user: base
+  github_id: 505
+  aasm_state: fetched
+
+
 without_checks:
   name: lalajopa
   language: javascript
   user: base
   github_id: 2
   aasm_state: created
+
+ruby_without_checks:
+  name: ruby_without_checks
+  language: ruby
+  user: base
+  github_id: 3
+  aasm_state: fetched

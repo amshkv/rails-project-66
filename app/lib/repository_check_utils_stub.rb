@@ -5,9 +5,20 @@ module RepositoryCheckUtilsStub
     0
   end
 
-  def self.start_lint_command(_)
-    result = File.read('test/fixtures/files/eslint_errors.json')
-    [result, 666]
+  def self.get_last_commit_id(_)
+    '5c59eef20d00261cb2fc265fe13a3e2d45633df0'
+  end
+
+  def self.start_lint_command(cmd)
+    language = cmd.split.first == 'npx' ? 'javascript' : 'ruby'
+
+    if language == 'javascript'
+      result = File.read('test/fixtures/files/eslint_errors.json')
+      [result, 666]
+    else
+      result = File.read('test/fixtures/files/rubocop_empty_errors.json')
+      [result, 0]
+    end
   end
 
   def self.remove_repository_dir(_); end

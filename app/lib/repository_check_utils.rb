@@ -11,6 +11,14 @@ module RepositoryCheckUtils
     exit_status.exitstatus
   end
 
+  def self.get_last_commit_id(path)
+    cmd = "git -C #{path} rev-parse HEAD"
+
+    commit_id, = Open3.popen3(cmd) { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
+
+    commit_id
+  end
+
   def self.start_lint_command(cmd)
     result, exit_status = Open3.popen3(cmd) { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
     [result, exit_status.exitstatus]

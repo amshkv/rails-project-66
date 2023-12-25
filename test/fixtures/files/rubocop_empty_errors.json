@@ -1,0 +1,91 @@
+{
+  "metadata":
+  {
+    "rubocop_version": "1.59.0",
+    "ruby_engine": "ruby",
+    "ruby_version": "3.2.2",
+    "ruby_patchlevel": "53",
+    "ruby_platform": "arm64-darwin22"
+  },
+  "files":
+  [
+    {
+      "path": "tmp/repos/104/Gemfile",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/Rakefile",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/bin/console",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/hexlet_code.gemspec",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/builder.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components/base.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components/input.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components/select.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components/submit.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/components/text.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/renderer.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/tag.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/lib/hexlet_code/version.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/test/support/models.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/test/test_helper.rb",
+      "offenses": []
+    },
+    {
+      "path": "tmp/repos/104/test/test_hexlet_code.rb",
+      "offenses": []
+    }
+  ],
+  "summary":
+  {
+    "offense_count": 0,
+    "target_file_count": 18,
+    "inspected_file_count": 18
+  }
+}

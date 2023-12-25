@@ -6,8 +6,10 @@ class RepositoryCheckJob < ApplicationJob
   def perform(check_id)
     check = Repository::Check.find check_id
     repository = check.repository
+    repo_data = repository_data(repository)
 
-    language, clone_url, commit_id = repository_data(repository)
+    language = repo_data[:language]
+    clone_url = repo_data[:clone_url]
 
     repo_dir = File.join('tmp', 'repos', check_id.to_s)
 
@@ -16,6 +18,8 @@ class RepositoryCheckJob < ApplicationJob
     unless clone_exit_status.zero?
       raise StandardError
     end
+
+    commit_id = ApplicationContainer[:repository_check_utils].get_last_commit_id(repo_dir)
 
     linting_service = "#{language}LintingService".classify.constantize
 
@@ -45,19 +49,21 @@ class RepositoryCheckJob < ApplicationJob
   private
 
   def repository_data(repository)
-    token = repository.user.token
-    client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
+    if repository.fetched?
+      {
+        clone_url: repository.clone_url,
+        language: repository.language
+      }
+    else
+      token = repository.user.token
+      client = ApplicationContainer[:octokit].new access_token: token, auto_paginate: true
+      github_id = repository.github_id.to_i
+      github_data = client.repo(github_id)
 
-    github_id = repository.github_id.to_i
-
-    github_data = client.repo(github_id)
-    clone_url = github_data['clone_url']
-    language = github_data['language'].downcase.to_sym
-
-    commits = client.commits(github_id) # NOTE: как получить всё остальное понятно, а вот как получить коммиты, из БД?
-
-    commit_id = commits[0]['sha']
-
-    [language, clone_url, commit_id]
+      {
+        clone_url: github_data['clone_url'],
+        language: github_data['language'].downcase.to_sym
+      }
+    end
   end
 end

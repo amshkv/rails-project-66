@@ -214,3 +214,67 @@ finished:
         ]
       }
     ]
+
+
+finished_ruby:
+  commit_id: 1234567890
+  passed: false
+  aasm_state: finished
+  repository: base_ruby
+  lint_messages_count: 3
+  lint_messages: |
+    {"metadata":
+      {"rubocop_version": "1.59.0",
+      "ruby_engine": "ruby",
+      "ruby_version": "3.2.2",
+      "ruby_patchlevel": "53",
+      "ruby_platform": "arm64-darwin22"},
+    "files":
+      [{"path": "tmp/repos/119/triangle.rb",
+        "offenses":
+        [{"severity": "convention",
+          "message":
+            "Method parameter must be at least 3 characters long.",
+          "cop_name": "Naming/MethodParameterName",
+          "corrected": false,
+          "correctable": false,
+          "location":
+            {"start_line": 18,
+            "start_column": 14,
+            "last_line": 18,
+            "last_column": 14,
+            "length": 1,
+            "line": 18,
+            "column": 14}},
+          {"severity": "convention",
+          "message":
+            "Method parameter must be at least 3 characters long.",
+          "cop_name": "Naming/MethodParameterName",
+          "corrected": false,
+          "correctable": false,
+          "location":
+            {"start_line": 18,
+            "start_column": 17,
+            "last_line": 18,
+            "last_column": 17,
+            "length": 1,
+            "line": 18,
+            "column": 17}},
+          {"severity": "convention",
+          "message":
+            "Method parameter must be at least 3 characters long.",
+          "cop_name": "Naming/MethodParameterName",
+          "corrected": false,
+          "correctable": false,
+          "location":
+            {"start_line": 18,
+            "start_column": 20,
+            "last_line": 18,
+            "last_column": 20,
+            "length": 1,
+            "line": 18,
+            "column": 20}}]}],
+    "summary":
+      {"offense_count": 3,
+      "target_file_count": 1,
+      "inspected_file_count": 1}}

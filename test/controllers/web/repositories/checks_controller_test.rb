@@ -9,6 +9,10 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
     @repository = repositories(:base)
     @repository_without_checks = repositories(:without_checks)
     @check = repository_checks(:finished)
+
+    @ruby_repository = repositories(:base_ruby)
+    @ruby_repository_without_checks = repositories(:ruby_without_checks)
+    @ruby_check = repository_checks(:finished_ruby)
   end
 
   test 'guest cant show check page' do
@@ -25,10 +29,18 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test 'signed user get finished check show' do
+  test 'signed user get finished javascript check show' do
     sign_in(@user)
 
     get repository_check_path(@repository, @check)
+
+    assert_response :success
+  end
+
+  test 'signed user get finished ruby check show' do
+    sign_in(@user)
+
+    get repository_check_path(@ruby_repository, @ruby_check)
 
     assert_response :success
   end
@@ -58,7 +70,22 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
     assert { checks.empty? }
   end
 
-  test 'signed user create check' do
+  test 'signed user create check without errors on ruby' do
+    sign_in(@user)
+
+    post repository_checks_path(@ruby_repository_without_checks)
+
+    check = Repository::Check.find_by repository: @ruby_repository_without_checks.id
+
+    assert_redirected_to repository_path(@ruby_repository_without_checks)
+
+    assert { check }
+    assert { check.finished? }
+    assert { check.passed }
+    assert { check.lint_messages_count.zero? }
+  end
+
+  test 'signed user create check with errors on javascript' do
     sign_in(@user)
 
     post repository_checks_path(@repository)
