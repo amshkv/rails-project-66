@@ -3,7 +3,7 @@
 class JavascriptLintingService
   class << self
     def start_command(path)
-      "npx eslint #{path} -f json --no-eslintrc"
+      "npx eslint #{path} -f json --no-eslintrc -c .eslintrc.yml" # прописать конфиг
     end
 
     def lint_messages_count(json)
@@ -11,15 +11,16 @@ class JavascriptLintingService
     end
 
     def serialize_errors(json)
-      json.map do |line|
-        errors = line['messages'].map do |error|
+      files_with_errors = json.filter { |file| file['messages'].any? }
+      files_with_errors.map do |file|
+        errors = file['messages'].map do |error|
           {
             message: error['message'],
             rule: error['ruleId'],
             position: "#{error['line']}:#{error['column']}"
           }
         end
-        file_path = line['filePath']
+        file_path = file['filePath']
         { file_path:, errors: }
       end
     end

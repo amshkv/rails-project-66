@@ -6,7 +6,7 @@ class CreateRepositoryChecks < ActiveRecord::Migration[7.0]
       t.string :commit_id
       t.string :aasm_state
       t.integer :lint_messages_count
-      t.boolean :success_check, null: false, default: false # NOTE: может надо в initialize еще false ставить?
+      t.boolean :success_check, null: false, default: false
       t.json :lint_messages
       t.references :repository, null: false, foreign_key: true
 

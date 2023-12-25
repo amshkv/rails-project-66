@@ -21,16 +21,14 @@ class RepositoryCheckJob < ApplicationJob
 
     lint_command = linting_service.start_command(repo_dir)
 
-    lint_errors, lint_exit_status = ApplicationContainer[:repository_check_utils].start_lint_command(lint_command)
+    lint_errors, = ApplicationContainer[:repository_check_utils].start_lint_command(lint_command)
 
-    # NOTE: тут падает, если JSON не валидный, падает на parse
-    # NOTE: а если пришла пустая строка \ пустой lint_errors?
     parsed_json = JSON.parse(lint_errors)
     lint_messages_count = linting_service.lint_messages_count(parsed_json)
 
     check.update!(
       commit_id:,
-      passed: lint_exit_status.zero?, # NOTE: возможно тут надо ориентироваться на кол-во ошибок линтера еще?
+      passed: lint_messages_count.zero?, # NOTE: до этого проверка была на exit_status, но кажется правильнее проверять что нет ошибок
       lint_messages: lint_errors,
       lint_messages_count:
     )
@@ -43,6 +41,8 @@ class RepositoryCheckJob < ApplicationJob
     RepositoryCheckMailer.with(check:).failed_check.deliver_later if check.failed? || !check.passed
     ApplicationContainer[:repository_check_utils].remove_repository_dir(repo_dir)
   end
+
+  private
 
   def repository_data(repository)
     token = repository.user.token

@@ -4,12 +4,13 @@ require 'test_helper'
 
 class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
   test 'api check create' do
-    webhook_payload = File.read('test/fixtures/files/webhook_payload.json')
     repository = repositories(:without_checks)
-    # NOTE: изобретаем фабрику?
-    payload = JSON.parse(webhook_payload)
 
-    payload['repository']['id'] = repository.github_id.to_i
+    payload = {
+      'repository' => {
+        'id' => repository.github_id
+      }
+    }
 
     post api_checks_path, as: :json, headers: { 'x-github-event': 'push' }, params: payload
 

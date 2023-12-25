@@ -28,9 +28,9 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
 
   private
 
-  # NOTE: тут падает, если JSON не валидный, падает на parse
   def get_linter_errors(check)
-    json = JSON.parse(check.lint_messages)
+    # NOTE: такой тупой иф, потому что в фикстурах хекслет чека нет этого поля (а должно бы быть :yuy_suka:)
+    json = JSON.parse(check.lint_messages.presence || '{}')
     Rails.cache.fetch(check.cache_key_with_version, expires_in: 12.hours) do
       "#{check.repository.language}LintingService".classify.constantize.serialize_errors(json)
     end

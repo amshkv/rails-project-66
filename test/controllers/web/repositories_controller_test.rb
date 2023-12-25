@@ -7,7 +7,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     @user = users(:base)
     @repository = repositories(:base)
     @attrs = {
-      github_id: 165_602_591 # TODO: как-то неудобно что тут я знаю id из json, это ок?
+      github_id: 63_350_547
     }
   end
 

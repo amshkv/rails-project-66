@@ -3,7 +3,7 @@
 class RubyLintingService
   class << self
     def start_command(path)
-      "bundle exec rubocop #{path} --format json"
+      "bundle exec rubocop #{path} --format json -c .rubocop.yml"
     end
 
     def lint_messages_count(json)

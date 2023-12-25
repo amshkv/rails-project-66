@@ -3,7 +3,6 @@
 module ApplicationHelper
   include AuthConcern
 
-  # NOTE: или это в презентере должно быть?
   def repository_name(repository)
     repository.full_name || '-'
   end

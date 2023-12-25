@@ -3,7 +3,6 @@
 require 'open3'
 
 module RepositoryCheckUtils
-  # TODO: кажется можно путь хранить внутри этого инстанса и тогда не передавать его постоянно?
   def self.clone_repository(url, path)
     clone_command = "git clone #{url} #{path}"
 
