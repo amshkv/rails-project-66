@@ -13,10 +13,5 @@ class OctokitClientStub
     JSON.parse(response)
   end
 
-  def commits(_)
-    response = File.read('test/fixtures/files/commits_response.json')
-    JSON.parse(response)
-  end
-
   def create_hook(*); end
 end
