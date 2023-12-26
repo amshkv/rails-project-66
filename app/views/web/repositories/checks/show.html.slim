@@ -30,7 +30,8 @@
   - if @check.finished?
     = commit_link(@check.repository.url, @check.commit_id)
 
-- if @check.lint_messages_count.positive?
+/ NOTE: код чуть странный из-за проверки хекслет чека, не понимаю как может не быть count-а для finished проверки
+- if @check.lint_messages_count&.positive?
   .table-responsive.mt-5
     table.table.table-striped
       thead
