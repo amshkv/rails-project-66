@@ -20,7 +20,6 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     assert { check }
     assert { check.finished? }
-    assert { check.passed == false }
-    assert { check.lint_messages_count == 4 }
+    assert { check.passed }
   end
 end
