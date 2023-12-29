@@ -16,14 +16,9 @@ ru:
         show:
           back_to_reposithory: Назад к репозиторию
           check_repository: Проверка репозитория №%{id}
-          commit_id: Id коммита
-          created_date: Дата проверки
           error: Ошибка
-          lint_messages_count: Количество ошибок линтера
           message: Сообщение
-          passed: Успешная проверка?
           position: Позиция
-          state: Состояние
       index:
         last_check_status: Статус последней проверки
         new_repository: Добавить репозиторий
@@ -33,16 +28,8 @@ ru:
       new:
         title: Добавление репозитория
       show:
-        check_created_at: Дата создания
         check_repository: Проверить репозиторий
-        commit_id: Id коммита
-        created_at: 'Дата создания:'
         empty_checks: Пока нет проверок, поэтому тут пусто
-        language: 'Язык:'
-        name: 'Имя репозитория:'
-        passed: Успешная проверка?
-        state: Состояние
-        updated_at: 'Дата обновления:'
     welcome:
       index:
         about_project: Проект, который помогает автоматически следить за качеством репозиториев на Github. Он отслеживает изменения и прогоняет их через встроенные анализаторы. Затем формирует отчеты и отправляет их пользователю.

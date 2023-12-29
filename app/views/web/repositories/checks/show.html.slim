@@ -5,28 +5,28 @@
   = link_to t('.back_to_reposithory'), repository_path(@check.repository), class: 'btn btn-primary'
 
 .mt-3
-  strong = t('.created_date')
-  '
+  strong = han('repository/check', :created_at)
+  ':
   = l @check.created_at, format: :long
 
 .mt-3
-  strong = t('.state')
-  '
+  strong = han('repository/check', :state_name)
+  ':
   = @check.aasm.human_state
 
 .mt-3
-  strong = t('.passed')
-  '
+  strong = han('repository/check', :passed)
+  ':
   = @check.passed
 
 .mt-3
-  strong = t('.lint_messages_count')
-  '
+  strong = han('repository/check', :lint_messages_count)
+  ':
   = @check.lint_messages_count
 
 .mt-3
-  strong = t('.commit_id')
-  '
+  strong = han('repository/check', :commit_id)
+  ':
   - if @check.finished?
     = commit_link(@check.repository.url, @check.commit_id)
 
@@ -36,9 +36,9 @@
     table.table.table-striped
       thead
         tr
-          td = t('.message')
-          td = t('.error')
-          td = t('.position')
+          th = t('.message')
+          th = t('.error')
+          th = t('.position')
       tbody
         - @check_errors.each do |group|
           tr

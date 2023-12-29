@@ -5,23 +5,23 @@
   = link_to t('.check_repository'), repository_checks_path(@repository), 'data-turbo-method': :post, class: 'btn btn-primary'
 
 .mt-3
-  strong = t('.name')
-  '
+  strong = han(:repository, :name)
+  ':
   = repository_name(@repository)
 
 .mt-3
-  strong = t('.language')
-  '
+  strong = han(:repository, :language)
+  ':
   = @repository.language
 
 .mt-3
-  strong = t('.created_at')
-  '
+  strong = han(:repository, :created_at)
+  ':
   = l @repository.created_at, format: :long
 
 .mt-3
-  strong = t('.updated_at')
-  '
+  strong = han(:repository, :updated_at)
+  ':
   = l @repository.updated_at, format: :long
 
 - if @checks.any?
@@ -29,10 +29,10 @@
     thead
       tr
         th
-        th = t('.state')
-        th = t('.commit_id')
-        th = t('.passed')
-        th = t('.check_created_at')
+        th = han('repository/check', :state_name)
+        th = han('repository/check', :commit_id)
+        th = han('repository/check', :passed)
+        th = han('repository/check', :created_at)
     tbody
       - @checks.each do |check|
         tr

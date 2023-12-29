@@ -3,15 +3,22 @@ ru:
   activerecord:
     attributes:
       repository:
+        created_at: Дата создания
         github_id: GitHub
         language: Язык
         name: Название
+        updated_at: Дата обновления
       repository/check:
         aasm_state:
           created: Создан
           failed: С ошибкой
           finished: Завершена
           started: В процессе
+        commit_id: ID коммита
+        created_at: Дата создания
+        lint_messages_count: Количество ошибок линтера
+        passed: Успешная проверка?
+        state_name: Состояние
     errors:
       messages:
         blank: не может быть пустым
