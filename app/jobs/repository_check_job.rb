@@ -5,6 +5,9 @@ class RepositoryCheckJob < ApplicationJob
 
   def perform(check_id)
     check = Repository::Check.find check_id
+
+    check.mark_as_started!
+
     repository = check.repository
     repo_data = repository_data(repository)
 

@@ -27,9 +27,14 @@ class Repository::Check < ApplicationRecord
   belongs_to :repository
 
   aasm do
-    state :started, initial: true
+    state :created, initial: true
+    state :started
     state :finished
     state :failed
+
+    event :mark_as_started do
+      transitions from: :created, to: :started
+    end
 
     event :mark_as_finish do
       transitions from: :started, to: :finished
