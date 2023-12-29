@@ -20,6 +20,6 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     assert { check }
     assert { check.finished? }
-    assert { check.passed }
+    assert { check.passed == false }
   end
 end

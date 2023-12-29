@@ -46,7 +46,7 @@ without_checks:
   language: javascript
   user: base
   github_id: 2
-  aasm_state: created
+  aasm_state: fetched
 
 ruby_without_checks:
   name: ruby_without_checks

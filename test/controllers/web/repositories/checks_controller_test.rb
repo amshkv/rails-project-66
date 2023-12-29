@@ -88,10 +88,10 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
   test 'signed user create check with errors on javascript' do
     sign_in(@user)
 
-    post repository_checks_path(@repository)
+    post repository_checks_path(@repository_without_checks)
 
-    check = Repository::Check.find_by repository: @repository.id
-    assert_redirected_to repository_path(@repository)
+    check = Repository::Check.find_by repository: @repository_without_checks.id
+    assert_redirected_to repository_path(@repository_without_checks)
     assert { check }
     assert { check.finished? }
     assert { check.passed == false }
