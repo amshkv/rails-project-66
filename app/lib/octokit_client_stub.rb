@@ -14,4 +14,8 @@ class OctokitClientStub
   end
 
   def create_hook(*); end
+
+  def hooks(*)
+    []
+  end
 end
