@@ -6,6 +6,12 @@ ru:
         github_id: GitHub
         language: Язык
         name: Название
+      repository/check:
+        aasm_state:
+          created: Создан
+          failed: С ошибкой
+          finished: Завершена
+          started: В процессе
     errors:
       messages:
         blank: не может быть пустым

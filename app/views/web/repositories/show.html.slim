@@ -38,7 +38,7 @@
         tr
           td
             = link_to check.id, repository_check_path(@repository.id, check.id)
-          td = check.aasm_state
+          td = check.aasm.human_state
           td
             - if check.finished?
               = commit_link(check.repository.url, check.commit_id)
