@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddWebhookRepository < ApplicationJob
+class AddWebhookRepositoryJob < ApplicationJob
   queue_as :default
 
   def perform(repo_id)

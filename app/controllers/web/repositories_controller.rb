@@ -25,7 +25,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
     if @repository.save
       FetchUserRepositoryInfoJob.perform_later(@repository.id)
-      AddWebhookRepository.perform_later(@repository.id)
+      AddWebhookRepositoryJob.perform_later(@repository.id)
       redirect_to repositories_path, notice: I18n.t('repository.create.success')
     else
       @repositories = repos_with_allowed_languages.map { |repo| [repo['full_name'], repo['id']] }
