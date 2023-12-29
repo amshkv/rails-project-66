@@ -40,14 +40,14 @@ class Web::RepositoriesController < Web::ApplicationController
     params.require(:repository).permit(:github_id)
   end
 
-  def user_repositories(user)
-    Rails.cache.fetch("#{user.cache_key_with_version}/user_repositories", expires_in: 12.hours) do
-      client = ApplicationContainer[:octokit].new access_token: user.token, auto_paginate: true
+  def user_repositories
+    Rails.cache.fetch("#{current_user.cache_key_with_version}/user_repositories", expires_in: 12.hours) do
+      client = ApplicationContainer[:octokit].new access_token: current_user.token, auto_paginate: true
       client.repos
     end
   end
 
   def repos_with_allowed_languages
-    user_repositories(current_user).filter { |repo| Repository.language.value? repo['language']&.downcase }
+    user_repositories.filter { |repo| Repository.language.value? repo['language']&.downcase }
   end
 end
