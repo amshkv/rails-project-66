@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Web::Repositories::ChecksController < Web::Repositories::ApplicationController
+  before_action :authenticate_user
   after_action :verify_authorized, only: %i[create show]
 
   def show
